@@ -1,1 +1,3 @@
-// Flows will be imported for their side effects in this file.
+import '@/ai/flows/categorize-transaction.ts';
+import '@/ai/flows/suggest-budget.ts';
+import '@/ai/flows/summarize-spending.ts';
