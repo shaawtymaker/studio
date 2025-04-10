@@ -2,7 +2,19 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export const DashboardOverview = () => {
+interface DashboardData {
+  totalIncome: number;
+  totalExpenses: number;
+  balance: number;
+  budgetStatus: string;
+}
+
+export const DashboardOverview = ({
+  totalIncome,
+  totalExpenses,
+  balance,
+  budgetStatus,
+}: DashboardData) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <Card>
@@ -10,7 +22,7 @@ export const DashboardOverview = () => {
           <CardTitle>Total Income</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$0.00</div>
+          <div className="text-2xl font-bold">${totalIncome.toFixed(2)}</div>
         </CardContent>
       </Card>
       <Card>
@@ -18,7 +30,7 @@ export const DashboardOverview = () => {
           <CardTitle>Total Expenses</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$0.00</div>
+          <div className="text-2xl font-bold">${totalExpenses.toFixed(2)}</div>
         </CardContent>
       </Card>
       <Card>
@@ -26,7 +38,7 @@ export const DashboardOverview = () => {
           <CardTitle>Balance</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$0.00</div>
+          <div className="text-2xl font-bold">${balance.toFixed(2)}</div>
         </CardContent>
       </Card>
       <Card>
@@ -34,7 +46,7 @@ export const DashboardOverview = () => {
           <CardTitle>Budget Status</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">On Track</div>
+          <div className="text-2xl font-bold">{budgetStatus}</div>
         </CardContent>
       </Card>
     </div>
