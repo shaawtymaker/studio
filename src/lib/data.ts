@@ -1,72 +1,61 @@
-import { db } from "@/lib/firebase";
-import * as admin from "firebase-admin";
+// This file contains dummy data for the application.
 
+// This is dummy data
 
-
-export function getOverviewData() {
-  return [
-    { name: 'Category A', value: 400 },
-    { name: 'Category B', value: 300 },
-    { name: 'Category C', value: 200 },
-    { name: 'Category D', value: 100 },
-  ];
-}
-
-export interface Budget {
+// Interfaces
+export interface SpendingData {
   name: string;
-  value: number;
-  budget: number;
+  amount: number;
 }
 
-export async function getBudgetData(): Promise<Budget[]> {
-  const collectionRef = admin.firestore().collection('budgets');
-  const budgetData: Budget[] = [];
-  const querySnapshot = await collectionRef.get();
-  querySnapshot.forEach((doc: admin.firestore.QueryDocumentSnapshot) => {    
-    const data = doc.data();
-    budgetData.push(data as unknown as Budget);
-  });
-
-  return budgetData;
-
+export interface BudgetGoal {
+  category: string;
+  goal: number;
 }
 
-
-export function getExpenses():{ name: string; amount: number; }[] {
-  return [
-    { name: 'Expense 1', amount: 100 },
-    { name: 'Expense 2', amount: 200 },
-    { name: 'Expense 3', amount: 150 },
-    { name: 'Expense 4', amount: 300 },
-    { name: 'Expense 5', amount: 250 },
-  ];
+export interface TransactionData {
+  id: string;
+  amount: number;
+  category: string;
+  date: string;
 }
 
-export function getTotalExpenses(): number {
-  const expenses = getExpenses();
-  return expenses.reduce((total, expense) => {
-    return total + expense.amount;
-  }, 0);
-}
+// Constants
 
-export function getTransactionsData() {
-  return [
-    { name: 'Transaction 1', value: 100 },
-    { name: 'Transaction 2', value: 200 },
-    { name: 'Transaction 3', value: 150 },
-    { name: 'Transaction 4', value: 300 },
-    { name: 'Transaction 5', value: 250 },
-    { name: 'Transaction 6', value: 50 },
-    { name: 'Transaction 7', value: 120 },
-    { name: 'Transaction 8', value: 180 },
-    { name: 'Transaction 9', value: 220 },
-    { name: 'Transaction 10', value: 80 },
-  ];
-}
+export const currentBalance = 1000;
+export const categories = ['Food', 'Transportation', 'Entertainment', 'Housing', 'Utilities', 'Healthcare', 'Shopping', 'Savings', 'Other'];
+export const totalExpenses = 500;
+export const totalIncome = 1500;
 
-export function getChatbotData() {
-  return [
-    { name: 'Chatbot 1', value: 75 },
-    { name: 'Chatbot 2', value: 125 },
-  ];
-}
+export const spendingData: SpendingData[] = [
+  { name: 'Food', amount: 300 },
+  { name: 'Transportation', amount: 150 },
+  { name: 'Entertainment', amount: 100 },
+  { name: 'Housing', amount: 800 },
+  { name: 'Utilities', amount: 200 },
+];
+
+export const budgetGoals: BudgetGoal[] = [
+  { category: "Food", goal: 400 },
+  { category: "Transportation", goal: 200 },
+  { category: "Entertainment", goal: 150 },
+  { category: "Housing", goal: 900 },
+  { category: "Utilities", goal: 250 },
+];
+
+export const transactions: TransactionData[] = [
+  { id: "1", amount: 100, category: "Food", date: "2024-04-10" },
+  { id: "2", amount: 50, category: "Transportation", date: "2024-04-09" },
+  { id: "3", amount: 25, category: "Entertainment", date: "2024-04-08" },
+  { id: "4", amount: 75, category: "Food", date: "2024-04-07" },
+  { id: "5", amount: 120, category: "Utilities", date: "2024-04-06" },
+  { id: "6", amount: 30, category: "Transportation", date: "2024-04-05" },
+  { id: "7", amount: 60, category: "Entertainment", date: "2024-04-04" },
+  { id: "8", amount: 90, category: "Food", date: "2024-04-03" },
+  { id: "9", amount: 110, category: "Utilities", date: "2024-04-02" },
+  { id: "10", amount: 40, category: "Transportation", date: "2024-04-01" },
+  { id: "11", amount: 100, category: "Housing", date: "2024-03-31" },
+  { id: "12", amount: 30, category: "Shopping", date: "2024-03-30" },
+  { id: "13", amount: 20, category: "Healthcare", date: "2024-03-29" },
+  { id: "14", amount: 100, category: "Other", date: "2024-03-28" }
+];

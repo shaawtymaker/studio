@@ -1,10 +1,17 @@
 "use client";
+import { categories } from "@/lib/data";
 
-export const ExpenseCategorization = () => {
+function ExpenseCategorization() {
   return (
-    <div>
-      <h2>Expense Categorization</h2>
-      <p>This is a placeholder for the expense categorization feature.</p>
+    <div className="p-4 rounded-md border border-solid">
+      <h2 className="mb-2">Expense Categories</h2>
+      <ul className="p-4">
+        {categories.map((category) => (
+          <li className="mb-2" key={category}>{category}</li>
+        ))}
+      </ul>
     </div>
   );
-};
+}
+
+export default ExpenseCategorization;
